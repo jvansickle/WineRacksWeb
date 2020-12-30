@@ -10,12 +10,14 @@ using System.Threading.Tasks;
 
 namespace WineRacksWeb.Data
 {
-    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
+  public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
+  {
+    public ApplicationDbContext(
+        DbContextOptions options,
+        IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
     {
-        public ApplicationDbContext(
-            DbContextOptions options,
-            IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
-        {
-        }
     }
+
+    public DbSet<Wine> Wines { get; set; }
+  }
 }
